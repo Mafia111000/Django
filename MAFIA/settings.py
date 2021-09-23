@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 from django import apps
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','portofoliooo.herokuapp.com/']
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Application definition
 
 INSTALLED_APPS = [
@@ -134,7 +134,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # meine daala
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/var/www/static/',
-]
