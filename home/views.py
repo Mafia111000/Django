@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from home.models import EditEdu,EditExp,EditProj,EditLin,EditSkill
 
 # Create your views here.
-def first(request):
+def Home(request):
     skill={}
     exp=[]
     proj=[]
@@ -14,9 +14,11 @@ def first(request):
     for i in EditProj.objects.all():
         proj.append([i.Title,i.Desc,i.Year])
     for i in EditEdu.objects.all():
-        edu.append([i.UniName])
-    
-    values={'skills':skill,'exp':exp,'proj':proj}
+        edu.append([i.UniName,i.Degree,i.Majors.split(' ')[0],i.Majors.split(' ')[1]])
+    ed=edu[::-1]
+    e=exp[::-1]
+    p=proj[::-1]
+    values={'skills':skill,'exp':e,'proj':p,'edu':ed}
     
     return render(request,'home.html',values)
     
@@ -58,7 +60,3 @@ def about(request):
         return render(request,'about.html')
         
     return render(request,'about.html')
-def Home(request):
-    cotexto={'range': range(10) }
-    return render(request,'home.html',cotexto)
-    #return HttpResponse('')
